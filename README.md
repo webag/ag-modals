@@ -1,4 +1,18 @@
-ag-modals
-=========
+Modal windows with any html content.
 
-Modal windows with any html content
+Need: jQuery
+
+Example of use:
+<a data-ag="modal-example">Example link</a>
+
+<div id="modal-example" class="agmodal">
+	<h2 class="spasibo">Thanks for clean socks!</h2>
+	........
+  <a class="close-agmodal">×</a>
+</div>
+
+.ag-fx-slide
+.ag-fx-scale
+.ag-fx-3d
+ 
+Пример: <div id="modal-spasibo" class="agmodal ag-fx-scale">
