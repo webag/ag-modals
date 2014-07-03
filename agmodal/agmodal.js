@@ -1,8 +1,8 @@
-$(document).ready(function(){
+$(document).ready(function() {
 	$('a[data-ag]').on('click', function(e) {
 		e.preventDefault();
-		var modalLocation = $(this).attr('data-ag');
-		var modal = $('#'+modalLocation);
+		var modalLocation = $(this).data('ag');
+		var modal = $('#' + modalLocation);
 
 		$('<div class="agmodal-bg"></div>').insertAfter(modal);
 		modal.addClass('ag-visible');	
@@ -22,5 +22,4 @@ $(document).ready(function(){
 			modal.trigger('ag:close');
 		});
 	});
-
-})
+});
