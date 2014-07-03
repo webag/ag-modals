@@ -1,109 +1,90 @@
-.agmodal{
+.agmodal {
 	position: fixed;
-	top:10%;
-	background-color: #FFF;
-	width: 350px;
-	left:0px;
+	top: 10%;
+	left: 0px;
 	right: 0px;
-	margin: auto;
 	z-index: 99999;
-	padding:30px 30px 30px 30px;
-	visibility: hidden;
+	max-width: 350px;
+	margin: auto;
+	padding: 30px;
 	text-align: center;
+	background-color: #fff;
 	border-radius: 4px;
+	visibility: hidden;
 	opacity: 0;
-	-webkit-transition:all 0.4s ease;
-	-moz-transition:all 0.4s ease;
-	-o-transition:all 0.4s ease;
-	-ms-transition:all 0.4s ease;
-	transition:all 0.4s ease;
+	transition: all 0.4s ease;
 }
 
-.agmodal-bg{
+.agmodal-bg {
 	position: fixed;
-	display: block; 
+	top: 0;
+	left: 0; 
+	z-index: 100;
+	display: none;
 	height: 100%;
 	width: 100%;
 	background: #ccc;
-	background: rgba(0,0,0,.6);
-	z-index: 100;
-	display: none;
-	top: 0;
-	left: 0; 
+	background: rgba(0, 0, 0, .6);
 	cursor: pointer;
 }
 
-.close-agmodal{
-	font-size: 32px;
-	line-height: .5;
+.close-agmodal {
 	position: absolute;
 	top: 7px;
 	right: 7px;
 	color: #999;
+	font-size: 32px;
 	font-weight: bold;
+	line-height: .5;
 	cursor: pointer;
 }
 
-.close-agmodal:hover{
+.close-agmodal:hover {
 	text-decoration: none;
-	color:#000;
+	color: #000;
 }
 
-.agmodal input{
+.agmodal input {
 	display: block;
 	width: 100%;
-	margin:10px 0;
+	margin: 10px 0;
 }
 
-.agmodal .note{
-	margin-bottom:0px;
+.agmodal .note {
+	margin: 10px 0 0;
 	font-size: 12px;
 	text-align: left;
-	margin-top:10px;
 }
 
-.agmodal button{
+.agmodal button {
 	display: block;
 	width: 100%;
 }
 
-.ag-large{width: 600px;}
+.ag-large {
+	width: 600px;
+}
 
 
 /***********************EFFECTS**********************/
-.ag-fx-slide{
-	-webkit-transform:translateY(-1000px);
-	-moz-transform:translateY(-1000px);
-	-o-transform:translateY(-1000px);
-	-ms-transform:translateY(-1000px);
-	transform:translateY(-1000px);
+
+.ag-fx-slide {
+	transform: translateY(-1000px);
 }
 
-.ag-fx-scale{
-	-webkit-transform: scale(0.8);
-	-moz-transform: scale(0.8);
-	-o-transform: scale(0.8);
-	-ms-transform: scale(0.8);
+.ag-fx-scale {
+	opacity: 0;
 	transform: scale(0.8);
-	opacity: 0;
 }
 
-.ag-fx-3d{
-	-webkit-transform: perspective(1000px) rotateX(45deg);
-	-moz-transform: perspective(1000px) rotateX(45deg);
-	-o-transform: perspective(1000px) rotateX(45deg);
-	-ms-transform: perspective(1000px) rotateX(45deg);
-	transform: perspective(1000px) rotateX(45deg);
+.ag-fx-3d {
 	opacity: 0;
+	transform: perspective(1000px) rotateX(45deg);
 }
 /***********************EFFECTS**********************/
 
-.ag-visible{
+.ag-visible {
 	visibility: visible;
-	-webkit-transform:translateY(0px) scale(1);
-	-moz-transform:translateY(0px) scale(1);
-	-o-transform:translateY(0px) scale(1);
-	-ms-transform:translateY(0px) scale(1);
-	transform:translateY(0px) scale(1);
 	opacity: 1;
+	transform: translateY(0px) scale(1);
 }
