@@ -1,8 +1,12 @@
+AG-modal
+---
 Modal windows with any html content.
-
 Need: jQuery
 
+Example
+------
 Example of use:
+```
 <a data-ag="modal-example">Example link</a>
 
 <div id="modal-example" class="agmodal">
@@ -10,9 +14,18 @@ Example of use:
 	........
   <a class="close-agmodal">×</a>
 </div>
+```
 
-.ag-fx-slide
-.ag-fx-scale
-.ag-fx-3d
- 
-Пример: <div id="modal-spasibo" class="agmodal ag-fx-scale">
+
+Transition effects
+------
+You may also add some transition effects by adding special classes to modal window.
+Example:
+```
+<div id="modal-spasibo" class="agmodal ag-fx-scale">
+```
+
+available classes:
+* .ag-fx-slide
+* .ag-fx-scale
+* .ag-fx-3d
