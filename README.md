@@ -6,6 +6,8 @@ Need: jQuery
 Example
 ------
 Example of use:
+
+DEMO: http://agmegadeth.github.io/ag-modals
 ```
 <a data-ag="modal-example">Example link</a>
 
