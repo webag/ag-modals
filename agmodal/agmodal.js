@@ -1,25 +1,30 @@
-$(document).ready(function() {
-	$('a[data-ag]').on('click', function(e) {
+$(document).ready(function(){
+	$('*[data-ag]').on('click', function(e) {
 		e.preventDefault();
-		var modalLocation = $(this).data('ag');
-		var modal = $('#' + modalLocation);
+		var modalLocation = $(this).attr('data-ag');
+		var modal = $('#'+modalLocation);
+		modal.trigger('ag:open');
+	});
 
-		$('<div class="agmodal-bg"></div>').insertAfter(modal);
-		modal.addClass('ag-visible');	
+	$('.agmodal').bind('ag:open',function(){
+		$('<div class="agmodal-bg"></div>').insertAfter(this);
+		$(this).addClass('ag-visible');
 		$('.agmodal-bg').fadeIn(400);
 
-		modal.bind('ag:close', function () {
-			modal.removeClass('ag-visible');
-			$('.agmodal-bg').fadeOut(300);
-			$('.agmodal-bg').remove();
+		var scrolled = $(window).scrollTop()+50;
+		$('.agmodal').css('top', scrolled);
+
+		$(this).bind('ag:close', function () {
+			$(this).removeClass('ag-visible');
+			$('.agmodal-bg').fadeOut(400);
+			setTimeout(function() {$('.agmodal-bg').remove();},400);
+
+			if($('.agmodal video').length){
+				$('.agmodal video').get(0).pause();
+			}
 		})
 
-		$('.close-agmodal').click(function(){
-			modal.trigger('ag:close');
-		});
+		$('.close-agmodal,.agmodal-bg').click(function(){$(this).trigger('ag:close');});
+	})
 
-		$('.agmodal-bg').click(function(){
-			modal.trigger('ag:close');
-		});
-	});
-});
+})
