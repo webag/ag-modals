@@ -7,14 +7,14 @@ Example
 ------
 Example of use:
 
-DEMO: http://agmegadeth.github.io/ag-modals
+DEMO: http://webag.github.io/ag-modals
 ```
 <a data-ag="modal-example">Example link</a>
 
 <div id="modal-example" class="agmodal">
 	<h2 class="spasibo">Thanks for clean socks!</h2>
 	........
-  <a class="close-agmodal">×</a>
+  <a class="close-agmodal"></a>
 </div>
 ```
 
