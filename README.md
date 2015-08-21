@@ -5,7 +5,7 @@ Need: jQuery
 
 New in 2 version:
 * upgrade core of plugin
-* no more need to write <a class="close-agmodal"></a> in modal
+* no more need to write html for cross in modal
 * add 2 visual effects
 * allow multiple modal windows at same time (if modal called inside other open modal)
 
