@@ -13,7 +13,6 @@ Example of use:
 <div id="modal-example" class="agmodal">
 	<h2 class="spasibo">Thanks for clean socks!</h2>
 	........
-	<a class="close-agmodal"></a>
 </div>
 ```
 
