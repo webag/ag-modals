@@ -14,12 +14,19 @@ Example
 Example of use:
 
 ```
-<a data-ag="modal-example">Example link</a>
-
 <div id="modal-example" class="agmodal">
 	<h2 class="spasibo">Thanks for clean socks!</h2>
 	........
 </div>
+
+call modal:
+<a data-ag="modal-example">Example link</a>
+
+or via js
+$('#modal-example').trigger('ag:open');
+
+close modal
+$('#modal-example').trigger('ag:close');
 ```
 
 
