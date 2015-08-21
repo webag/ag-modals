@@ -1,0 +1,122 @@
+.agmodal{
+	position: absolute;
+	background: #f7f8f9;
+	box-shadow: 0 0 15px 0 rgba(0,0,0,0.2);
+	width: 450px;
+	left: 0;
+	right: 0;
+	top: 0;
+	margin: auto;
+	z-index: 9999;
+	padding: 30px 35px 30px 35px;
+	pointer-events: none;
+	opacity: 0;
+	transition: transform 0.4s ease,opacity 0.4s ease,width 0.4s ease;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-backface-visibility: hidden;
+
+	& *{
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+}
+
+@media (max-width:600px){
+	.agmodal{
+		width: 100%;
+		max-width:100%;
+	}
+}
+
+.agmodal-bg{
+	position: fixed;
+	display: block; 
+	height: 100%;
+	width: 100%;
+	background: #ccc;
+	background: rgba(44, 55, 73, 0.9);
+	z-index: 100;
+	display: none;
+	top: 0;
+	left: 0; 
+	cursor: pointer;
+	-webkit-backface-visibility: hidden;
+}
+
+$cross_size: 30px;
+
+.close-agmodal{
+	position: absolute;
+	top: 7px;
+	right: 7px;
+	width: $cross_size;
+	height: $cross_size;
+	cursor: pointer;
+	box-sizing: border-box;
+
+	&:before,&:after{
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: $cross_size;
+		height: 2px;
+		background-color: rgba(0,0,0,0.5);
+		transition: all 0.3s ease;
+	}
+	&:hover:before,&:hover:after{
+		background-color: $blue;
+	}
+
+	&:before{
+		@include transform(rotate(-45deg));
+	}
+
+	&:after{
+		@include transform(rotate(45deg));
+	}
+
+}
+
+/***********************EFFECTS**********************/
+.ag-fx-slide{
+	@include transform(translateY(-1000px));
+}
+
+.ag-fx-scale{
+	@include transform(scale(0.8));
+	opacity: 0;
+}
+
+.ag-fx-3d{
+	@include transform(perspective(1000px) rotateX(45deg));
+	opacity: 0;
+}
+
+.ag-fx-morph{
+	transition: transform 0.4s cubic-bezier(0.7,0,0.3,1),opacity 0.4s ease,width 0.4s ease;
+	@include transform(translate3d(-400px, 0, 0) scale3d(1.4, 0.5, 1));
+	opacity: 0;
+
+	&_top{
+		@include transform(translate3d(0, -200px, 0) scale3d(0.3, 1.4, 1));
+	}
+}
+/***********************EFFECTS**********************/
+
+.ag-visible{
+	pointer-events: auto;
+	@include transform(translateY(0px) scale(1));
+	opacity: 1;
+}
+
+.agmodal iframe, .agmodal object, .agmodal embed, .agmodal video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: auto;
+}
