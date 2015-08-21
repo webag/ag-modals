@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	$('.agmodal').bind('ag:open');
+	$('.agmodal').append('<a class="close-agmodal"></a>');
 
 	$('*[data-ag]').on('click', function(e) {
 		e.preventDefault();
