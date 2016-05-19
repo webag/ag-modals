@@ -1,7 +1,15 @@
-AG-modal 2
+AG-modal 4
 ---
-Modal windows with any html content.
+Modal windows with any html content, HTML5 video
 Need: jQuery
+
+New in 4 version:
+* Now agmodal is normal jQuery plugin! It has inizialization and params!!!
+* Add ajax HTML5 video future with percentage download!!! SO CUTE!!!
+* Rewrite some css, append scss file.
+
+New in 3 version:
+* don't know, brothers, don't know.
 
 New in 2 version:
 * upgrade core of plugin
@@ -9,38 +17,62 @@ New in 2 version:
 * add 2 visual effects
 * allow multiple modal windows at same time (if modal called inside other open modal)
 
-Example
+Get started
 ------
-Example of use:
 
 ```
-<div id="modal-example" class="agmodal">
-	<h2 class="spasibo">Thanks for clean socks!</h2>
-	........
+//inizialization AgModal
+$(document).ready(function(){
+	$('.agmodal').agmodal({
+		effect: 'fade', //slide,scale,3d,morph
+		overlayColor: 'rgba(0,0,0,0.5)'
+	});
+});
+```
+
+
+Example of use:
+------
+
+```
+
+<div id="modal-id" class="agmodal">
+	<!-- Some awesome text or html inside-->
 </div>
 
 call modal:
-<a data-ag="modal-example">Example link</a>
+<button data-ag="modal-id">Open Modal</button>
+or
+<a href=# data-ag="modal-id">Open Modal</a>
+or
+some tag with data-ag attribute
 
 or via js
-$('#modal-example').trigger('ag:open');
+$('#modal-id').agmodal('open');
 
 close modal
-$('#modal-example').trigger('ag:close');
+$('#modal-id').agmodal('close');
 ```
 
-
-Transition effects
+Example of use:
 ------
-You may also add some transition effects by adding special classes to modal window.
-Example:
-```
-<div id="modal-spasibo" class="agmodal ag-fx-morph">
+
 ```
 
-available classes:
-* ag-fx-slide
-* ag-fx-scale
-* ag-fx-3d
-* ag-fx-morph (new)
-* ag-fx-morph_top (new)
+<div id="modal-id" class="agmodal">
+	<!-- Some awesome text or html inside-->
+</div>
+
+call modal:
+<button data-ag="modal-id">Open Modal</button>
+or
+<a href=# data-ag="modal-id">Open Modal</a>
+or
+some tag with data-ag attribute
+
+or via js
+$('#modal-id').agmodal('open');
+
+close modal
+$('#modal-id').agmodal('close');
+```
