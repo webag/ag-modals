@@ -20,7 +20,7 @@ New in 2 version:
 Get started
 ------
 
-```
+```javascript
 //inizialization AgModal
 $(document).ready(function(){
 	$('.agmodal').agmodal({
@@ -34,29 +34,44 @@ $(document).ready(function(){
 Example of use:
 ------
 
-```
-
+```html
 <div id="modal-id" class="agmodal">
 	<!-- Some awesome text or html inside-->
 </div>
+```
 
-call modal:
+Сall modal via html:
+------
+
+```html
 <button data-ag="modal-id">Open Modal</button>
+```
 or
+```html
 <a href=# data-ag="modal-id">Open Modal</a>
+```
 or
 some tag with data-ag attribute
 
-or via js
-$('#modal-id').agmodal('open');
 
-close modal
+Сall modal via js
+------
+
+```javascript
+$('#modal-id').agmodal('open');
+```
+
+Close modal
+------
+
+```javascript
 $('#modal-id').agmodal('close');
 ```
 
 Ajax HTML5 video:
 ------
 There are data-video and data-poster attributes to firing AgModal for ajax video download with percentage.
-```
 
+```html
 <div id="modal-ajax-video-id" data-video="/video/full-video.mp4" data-poster="/images/poster.jpg" class="agmodal agmodal--video"></div>
+```
