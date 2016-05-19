@@ -48,7 +48,7 @@ Example of use:
 ```
 or
 ```html
-<a href=# data-ag="modal-id">Open Modal</a>
+<a href="#" data-ag="modal-id">Open Modal</a>
 ```
 or
 some tag with data-ag attribute
