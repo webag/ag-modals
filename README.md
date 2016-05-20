@@ -1,5 +1,5 @@
-AG-modal 4
----
+#AG-modal 4
+
 Modal windows with any html content, HTML5 video
 Need: jQuery
 
@@ -17,8 +17,8 @@ New in 2 version:
 * add 2 visual effects
 * allow multiple modal windows at same time (if modal called inside other open modal)
 
-Get started
-------
+##Get started
+
 
 1. Create modal with class .agmodal and any content inside.
 ```html
@@ -49,25 +49,25 @@ or
 some tag with data-ag attribute
 
 
-Methods
-------
+##Methods
 
-Open agmodal
----
+
+####Open agmodal
 
 ```javascript
 $('#modal-id').agmodal('open');
 ```
 
-Close agmodal
-------
+####Close agmodal
 
 ```javascript
 $('#modal-id').agmodal('close');
 ```
 
-Ajax HTML5 video:
-------
+
+
+##Ajax HTML5 video:
+
 There are data-video and data-poster attributes to firing AgModal for ajax video download with percentage.
 
 ```html
