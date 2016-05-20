@@ -20,14 +20,14 @@ New in 2 version:
 ##Get started
 
 
-1. Create modal with class .agmodal and any content inside.
+#####1. Create modal with class .agmodal and any content inside.
 ```html
 <div id="modal-id" class="agmodal">
 	<!-- Some awesome text or html inside-->
 </div>
 ```
 
-2. Inizialization AgModal
+#####2. Inizialization AgModal
 ```javascript
 $(document).ready(function(){
 	$('.agmodal').agmodal({
@@ -37,7 +37,7 @@ $(document).ready(function(){
 });
 ```
 
-3. You may open agmodal with different methods^
+#####3. You may open agmodal with different methods^
 ```html
 <button data-ag="modal-id">Open Modal</button>
 ```
@@ -52,13 +52,13 @@ some tag with data-ag attribute
 ##Methods
 
 
-####Open agmodal
+#####Open agmodal
 
 ```javascript
 $('#modal-id').agmodal('open');
 ```
 
-####Close agmodal
+#####Close agmodal
 
 ```javascript
 $('#modal-id').agmodal('close');
