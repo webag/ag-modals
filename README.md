@@ -37,7 +37,7 @@ $(document).ready(function(){
 });
 ```
 
-#####3. You may open agmodal with different methods^
+#####3. You may open agmodal with different methods
 ```html
 <button data-ag="modal-id">Open Modal</button>
 ```
