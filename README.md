@@ -32,7 +32,8 @@ New in 2 version:
 $(document).ready(function(){
 	$('.agmodal').agmodal({
 		effect: 'fade', //slide,scale,3d,morph
-		overlayColor: 'rgba(0,0,0,0.5)'
+		overlayColor: 'rgba(0,0,0,0.5)',
+		center: true
 	});
 });
 ```
