@@ -3,14 +3,25 @@
   background: #f7f8f9;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
   width: 450px;
+  max-width: 100%;
   margin: 50px auto;
   padding: 30px 35px 30px 35px;
   transition: all 0.4s ease;
   -webkit-transform-origin: center top;
-      -ms-transform-origin: center top;
-          transform-origin: center top;
+  -ms-transform-origin: center top;
+  transform-origin: center top;
   cursor: auto;
   display: none;
+  will-change: opacity,tranform;
+}
+
+.agmodal:after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  width: 100%;
+  height: 50px;
 }
 
 .agmodal--fade {
@@ -19,17 +30,17 @@
 
 .agmodal--slide {
   -webkit-transform: translate3d(0, -500px, 0);
-          transform: translate3d(0, -500px, 0);
+  transform: translate3d(0, -500px, 0);
 }
 
 .agmodal--scale {
-  -webkit-transform: scale3d(0.9, 0.9, 1);
-          transform: scale3d(0.9, 0.9, 1);
+  -webkit-transform: scale3d(0.9, 0.9, 0.9);
+  transform: scale3d(0.9, 0.9, 0.9);
 }
 
 .agmodal--3d {
   -webkit-transform: perspective(1000px) rotateX(45deg);
-          transform: perspective(1000px) rotateX(45deg);
+  transform: perspective(1000px) rotateX(45deg);
 }
 
 .agmodal--morph {
@@ -37,12 +48,12 @@
   transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1), opacity 0.4s ease, width 0.4s ease;
   transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1), opacity 0.4s ease, width 0.4s ease, -webkit-transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
   -webkit-transform: translate3d(-400px, 0, 0) scale3d(1.4, 0.5, 1);
-          transform: translate3d(-400px, 0, 0) scale3d(1.4, 0.5, 1);
+  transform: translate3d(-400px, 0, 0) scale3d(1.4, 0.5, 1);
 }
 
 .agmodal--visible {
   -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
-          transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
   opacity: 1;
 }
 
@@ -59,35 +70,45 @@
   display: block;
 }
 
-@media (max-width: 600px) {
-  .agmodal {
-    width: 100%;
-    max-width: 100%;
-  }
-}
-
-html.agmodal--lock-test {
-  overflow-y: hidden !important;
-}
-
-html.agmodal--lock body {
-  overflow: hidden !important;
-}
-
 .agmodal__wrapper {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   position: fixed;
   height: 100%;
   width: 100%;
+  padding: 0 20px;
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: -100;
   transition: all 0.4s ease;
   cursor: pointer;
   overflow: auto;
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
   box-sizing: border-box;
   pointer-events: none;
   opacity: 0;
+  visibility: hidden;
+}
+
+@media (max-width: 1025px) {
+  .agmodal__wrapper {
+    display: none;
+    transition: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .agmodal__wrapper {
+    padding: 0;
+  }
 }
 
 .agmodal__wrapper .agmodal {
@@ -99,8 +120,19 @@ html.agmodal--lock body {
 }
 
 .agmodal__wrapper--visible {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  visibility: visible;
   pointer-events: auto;
   opacity: 1;
+  z-index: 9999;
+}
+
+.agmodal__wrapper--center {
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .agmodal__wrapper * {
@@ -109,22 +141,37 @@ html.agmodal--lock body {
 
 .agmodal__close {
   position: absolute;
-  width: 30px;
-  height: 30px;
+  top: -18px;
+  right: -18px;
   cursor: pointer;
-  box-sizing: border-box;
-  top: 7px;
-  right: 7px;
+  transition: all 0.3s ease;
+  background-color: #000;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+@media (max-width: 640px) {
+  .agmodal__close {
+    top: 5px;
+    right: 5px;
+  }
+}
+
+.agmodal__close:hover {
+  background-color: #fffb42;
 }
 
 .agmodal__close:before, .agmodal__close:after {
   content: '';
   position: absolute;
   top: 50%;
-  left: 0;
-  width: 30px;
+  left: 50%;
+  margin-top: -1px;
+  margin-left: -10px;
+  width: 20px;
   height: 2px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #FFF;
   transition: all 0.3s ease;
 }
 
@@ -134,14 +181,14 @@ html.agmodal--lock body {
 
 .agmodal__close:before {
   -webkit-transform: rotate(-45deg);
-      -ms-transform: rotate(-45deg);
-          transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 .agmodal__close:after {
   -webkit-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-          transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .agmodal__video-preloader {
@@ -149,9 +196,17 @@ html.agmodal--lock body {
   width: 100%;
   top: 50%;
   -webkit-transform: translate(0, -50%);
-      -ms-transform: translate(0, -50%);
-          transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
   text-align: center;
   z-index: 10;
   font-size: 64px;
+}
+
+html.agmodal--lock-test {
+  overflow-y: hidden !important;
+}
+
+html.agmodal--lock body {
+  overflow: hidden !important;
 }

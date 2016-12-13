@@ -1,25 +1,32 @@
 (function( $ ){
 
+	var settings  = {
+		overlayColor: 'rgba(44, 55, 73, 0.9)',
+		effect: 'fade', //slide,scale,3d,morph,
+		center: false
+	};
+
 	var methods = {
 
 		init : function( options ) {
-
-			var settings = $.extend({
-				overlayColor: 'rgba(44, 55, 73, 0.9)',
-				effect: 'scale' //slide,scale,3d,morph
-			}, options);
+			settings = $.extend( settings, options);
 
 			return this.each(function(){
 				var current_modal = $(this);
+				var class__center = "";
+
 				if (!current_modal.parent('.agmodal__wrapper').length) {
 					current_modal.append('<a class="agmodal__close"></a>');
-					$(this).wrap('<div class="agmodal__wrapper" tabindex="-1"></div>');
+					if (settings.center) {
+						class__center = "agmodal__wrapper--center";
+					}
+					$(this).wrap('<div class="agmodal__wrapper ' + class__center + ' " tabindex="-1"></div>');
 					current_modal.addClass('agmodal--' + settings.effect);
 					var current_modal__wrapper = current_modal.parent('.agmodal__wrapper');
 
 					current_modal__wrapper.css('background-color', settings.overlayColor);
 					$(document).trigger('agmodal.inited');
-				};
+				}
 			});
 		},
 
@@ -30,11 +37,11 @@
 			$('html').addClass('agmodal--lock');
 			current_modal__wrapper.addClass('agmodal__wrapper--visible');
 			current_modal.addClass('agmodal--visible');
+			current_modal.agmodal('checkHeights');
 
 			setTimeout( function() {
 				$('.agmodal__wrapper--visible').focus();
 			},400);
-
 
 			// video open
 			if (current_modal.find('video').length) {
@@ -52,8 +59,8 @@
 					var preloader_html = "<div class='agmodal__video-preloader'><span></span></div>";
 					current_modal.prepend(video_html);
 					current_modal.prepend(preloader_html);
-					
-					xhr = new XMLHttpRequest();
+
+					var xhr = new XMLHttpRequest();
 					xhr.open('GET', video_src, true);
 					xhr.responseType = 'blob';
 					xhr.onprogress = function(e) {
@@ -65,8 +72,8 @@
 							total = 86100000;
 							$('.agmodal__video-preloader span').text(parseInt( (e.loaded / total * 100), 10) + "%");
 						}
-					}
-					xhr.onload = function(e) {
+					};
+					xhr.onload = function() {
 						if (this.status == 200) {
 							var current_video = current_modal.find('video').get(0);
 							var myBlob = this.response;
@@ -76,10 +83,10 @@
 							current_modal.find('.agmodal__video-preloader').remove();
 							current_video.oncanplay = function() {
 								current_video.play();
-							}
+							};
 							current_modal.find('video').addClass('downloaded');
 						}
-					}
+					};
 
 					xhr.send();
 				} else {
@@ -111,7 +118,6 @@
 				current_modal.find('video').get(0).pause();
 			}
 
-
 			if (current_modal.attr('data-video')) {
 				if (!current_modal.find('video').hasClass('downloaded')) {
 					current_modal.find('video').get(0).pause();
@@ -129,22 +135,41 @@
 
 			current_modal.trigger('agmodal.closed');
 			return this;
+		},
+
+		checkHeights : function() {
+			var current_modal = $(this);
+			var current_modal__wrapper = current_modal.parent('.agmodal__wrapper');
+			var window_height = $(window).height();
+			var modal_height = current_modal.outerHeight();
+
+			if (window_height < (modal_height + 110)){
+				current_modal__wrapper.removeClass('agmodal__wrapper--center');
+			} else if (settings.center) {
+				current_modal__wrapper.addClass('agmodal__wrapper--center');
+			}
+
+			return this;
 		}
 
 	};
 
 	// определяем ширину скроллбара
-	$(window).load(function(){
+	$(window).on('load',function(){
 		var HTML,w1,w2,scrollWidth;
-		HTML = $("html"),
-			w1 = $(window).width();
+		HTML = $("html");
+		w1 = $(window).width();
 		HTML.addClass('agmodal--lock-test');
 		w2 = $(window).width();
 		HTML.removeClass('agmodal--lock-test');
 		scrollWidth = w2 - w1;
-		$("<style type='text/css'>.agmodal--lock{margin-right:" + scrollWidth + "px !important;}</style>").appendTo("body");
+		$("<style type='text/css'>.agmodal--lock{margin-right:" + scrollWidth + "px !important;}</style>").appendTo("head");
 	});
 	// определяем ширину скроллбара
+
+	$(window).on('resize',function(){
+		$('.agmodal--visible').agmodal('checkHeights');
+	});
 
 	$(document).ready(function() {
 		$('*[data-ag]').click(function(e){
@@ -156,11 +181,11 @@
 	});
 
 	$(document).on('agmodal.inited', function() {
-		$('.agmodal__close').click(function(e){
+		$('.agmodal__close').click(function(){
 			$(this).parent('.agmodal').agmodal('close');
 		});
 
-		$('.agmodal__wrapper').click(function(e){
+		$('.agmodal__wrapper').click(function(){
 			$(this).find('.agmodal').agmodal('close');
 		}).children().click(function(e){
 			e.stopPropagation();

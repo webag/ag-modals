@@ -1,48 +1,25 @@
-/// Иоконка закрытия модальных окон в виде креста.
-/// @access public
-/// @param {String} $cross_size - размер иконки
-@mixin cross($cross_size,$color,$hover-color) {
-	position: absolute;
-	width: $cross_size;
-	height: $cross_size;
-	cursor: pointer;
-	box-sizing: border-box;
-
-	&:before,&:after{
-		content: '';
-		position: absolute;
-		top: 50%;
-		left: 0;
-		width: $cross_size;
-		height: 2px;
-		background-color: $color;
-		transition: all 0.3s ease;
-	}
-
-	&:hover:before,&:hover:after{
-		background-color: $hover-color;
-	}
-
-	&:before{
-		transform: rotate(-45deg);
-	}
-
-	&:after{
-		transform: rotate(45deg);
-	}
-}
-
 .agmodal{
 	position: relative;
 	background: #f7f8f9;
 	box-shadow: 0 0 15px 0 rgba(0,0,0,0.2);
 	width: 450px;
+	max-width: 100%;
 	margin: 50px auto;
 	padding: 30px 35px 30px 35px;
 	transition: all 0.4s ease;
 	transform-origin: center top;
 	cursor: auto;
 	display: none;
+	will-change: opacity,tranform;
+
+	&:after{
+		content: '';
+		position: absolute;
+		bottom: -50px;
+		left: 0;
+		width: 100%;
+		height: 50px;
+	}
 
 	&--fade{
 		opacity: 0;
@@ -53,7 +30,7 @@
 	}
 
 	&--scale{
-		transform: scale3d(0.9,0.9,1);
+		transform: scale3d(0.9,0.9,0.9);
 	}
 
 	&--3d{
@@ -84,40 +61,33 @@
 	}
 }
 
-@media (max-width: 600px){
-	.agmodal{
-		width: 100%;
-		max-width:100%;
-	}
-}
-
-html.agmodal--lock-test{
-	overflow-y: hidden !important;
-}
-
-html.agmodal--lock{
-
-	body{
-		overflow: hidden !important;
-	}
-}
-
 .agmodal__wrapper{
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
 	position: fixed;
 	height: 100%;
 	width: 100%;
+	padding: 0 20px;
 	top: 0;
 	left: 0;
-	z-index: 9999;
+	z-index: -100;
 	transition: all 0.4s ease;
 	cursor: pointer;
 	overflow: auto;
 	overflow-y: scroll;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
+	-webkit-overflow-scrolling: touch;
 	box-sizing: border-box;
 	pointer-events: none;
 	opacity: 0;
+	visibility: hidden;
+	@media (max-width: 1025px){
+		display: none;
+		transition: none;
+	}
+	@media (max-width: 640px){
+		padding: 0;
+	}
 
 	.agmodal{
 		display: block;
@@ -128,21 +98,73 @@ html.agmodal--lock{
 	}
 
 	&--visible{
+		display: flex;
+		visibility: visible;
 		pointer-events: auto;
 		opacity: 1;
+		z-index: 9999;
+	}
+
+	&--center{
+		align-items: center;
 	}
 
 	& *{
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
 		box-sizing: border-box;
 	}
 }
 
+$full_cross_size: 36px;
+$cross_size: 20px;
+$cross_weight: 2px;
+$cross_color: #FFF;
+$cross-color--hover: #000;
+$cross-bg-color: #000;
+$cross-bg-color--hover: #fffb42;
+
 .agmodal__close{
-	@include cross(30px,rgba(0,0,0,0.5),#000);
-	top: 7px;
-	right: 7px;
+	position: absolute;
+	top: -$full_cross_size/2;
+	right: -$full_cross_size/2;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	background-color: $cross-bg-color;
+	width: $full_cross_size;
+	height: $full_cross_size;
+	border-radius: 50%;
+	@media (max-width: 640px){
+		top: 5px;
+		right: 5px;
+	}
+
+	&:hover{
+		background-color: $cross-bg-color--hover;
+	}
+
+	&:before,&:after{
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-top: -$cross_weight/2;
+		margin-left: -$cross_size/2;
+		width: $cross_size;
+		height: $cross_weight;
+		background-color: $cross_color;
+		transition: all 0.3s ease;
+	}
+
+	&:hover:before,&:hover:after{
+		background-color: $cross-color--hover;
+	}
+
+	&:before{
+		transform: rotate(-45deg);
+	}
+
+	&:after{
+		transform: rotate(45deg);
+	}
 }
 
 .agmodal__video-preloader{
@@ -153,4 +175,16 @@ html.agmodal--lock{
 	text-align: center;
 	z-index: 10;
 	font-size: 64px;
+}
+
+html{
+	&.agmodal--lock-test{
+		overflow-y: hidden !important;
+	}
+
+	&.agmodal--lock{
+		body{
+			overflow: hidden !important;
+		}
+	}
 }
