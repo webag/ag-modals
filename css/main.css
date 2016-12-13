@@ -1,0 +1,24 @@
+*, *:after, *:before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%; }
+
+h1, h2, h3, h4, h5, h6, p, ul, ol, div, span {
+  max-height: 5000em; }
+
+article, aside, details, figcaption, figure, footer, header, main, nav, section, summary {
+  display: block;
+  position: relative; }
+
+img {
+  border: none; }
+
+body {
+  font-family: Arial,sans-serif; }
+
+section {
+  height: 3000px;
+  max-width: 1200px;
+  margin: 0 auto; }
