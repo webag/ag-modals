@@ -23,7 +23,7 @@ You may create this in any place of your page. But be carefull with replacement 
 </div>
 ```
 
-####3. Inizialize AgModal
+####3. Initialize AgModal
 ```javascript
 $(document).ready(function(){
 	$('#your_id').agmodal();
@@ -37,6 +37,12 @@ The value of data-ag attribute - the ID of your modal.
 <button data-ag="your_id">Open Modal</button>
 ```
 
+For better perfomance add `display:none` to your modal.
+```css
+#your_id{
+    display:none;
+}
+```
 
 ##Parameters
 
