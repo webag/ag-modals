@@ -22,7 +22,21 @@ body{
 }
 
 section{
-	height: 3000px;
 	max-width: 1200px;
 	margin: 0 auto;
+	padding: 50px;
+}
+
+button{
+	background-color: tomato;
+	border-radius: 22px;
+	padding: 10px 20px;
+	color: #FFF;
+	border: none;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	
+	&:hover{
+		background-color: brown;
+	}
 }

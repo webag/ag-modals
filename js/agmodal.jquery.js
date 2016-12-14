@@ -1,30 +1,35 @@
 (function( $ ){
 
-	var settings  = {
+	var defaults  = {
 		overlayColor: 'rgba(44, 55, 73, 0.9)',
 		effect: 'fade', //slide,scale,3d,morph,
-		center: false
+		center: false,
+		video: false,
+		videoAjax: false,
+		width: null
 	};
 
 	var methods = {
 
-		init : function( options ) {
-			settings = $.extend( settings, options);
+		init : function( params ) {
+			var options = $.extend({}, defaults, params);
+			this.data('agmodal', options);
 
 			return this.each(function(){
 				var current_modal = $(this);
-				var class__center = "";
+				var current_settings = current_modal.data('agmodal');
 
 				if (!current_modal.parent('.agmodal__wrapper').length) {
 					current_modal.append('<a class="agmodal__close"></a>');
-					if (settings.center) {
-						class__center = "agmodal__wrapper--center";
-					}
-					$(this).wrap('<div class="agmodal__wrapper ' + class__center + ' " tabindex="-1"></div>');
-					current_modal.addClass('agmodal--' + settings.effect);
+					current_modal.wrap('<div class="agmodal__wrapper" tabindex="-1"></div>');
 					var current_modal__wrapper = current_modal.parent('.agmodal__wrapper');
-
-					current_modal__wrapper.css('background-color', settings.overlayColor);
+					current_modal.addClass('agmodal--' + current_settings.effect);
+					if (current_settings.width !== null){
+						current_modal.css('width',current_settings.width + 'px');
+					}
+					current_settings.video ? current_modal.addClass('agmodal--video') : null;
+					current_settings.center ? current_modal__wrapper.addClass('agmodal__wrapper--center') : null;
+					current_modal__wrapper.css('background-color', current_settings.overlayColor);
 					$(document).trigger('agmodal.inited');
 				}
 			});
@@ -33,6 +38,7 @@
 		open : function() {
 			var current_modal = $(this);
 			var current_modal__wrapper = current_modal.parent('.agmodal__wrapper');
+			var current_settings = current_modal.data('agmodal');
 
 			$('html').addClass('agmodal--lock');
 			current_modal__wrapper.addClass('agmodal__wrapper--visible');
@@ -44,15 +50,19 @@
 			},400);
 
 			// video open
-			if (current_modal.find('video').length) {
+			if (current_settings.video) {
 				var current_video = current_modal.find('video').get(0);
-				current_video.play();
+				try{
+					current_video.play();
+				} catch (err){}
 			}
-			if (current_modal.attr('data-video')) {
+			if (current_settings.videoAjax) {
 				if (current_modal.find('video').hasClass('downloaded') !== true) {
 
-					var video_src = current_modal.data('video');
-					var poster_src = current_modal.data('poster');
+					var video_src = current_modal.data('agvideo');
+					var poster_src = current_modal.data('agposter');
+					var video_length = current_modal.data('agmb');
+
 					var video_html = '<video preload="auto" controls poster="' + poster_src + '">';
 
 					video_html = video_html + '</video>';
@@ -69,7 +79,7 @@
 							total = e.total;
 							$('.agmodal__video-preloader span').text(parseInt( (e.loaded / total * 100), 10) + "%");
 						} else {
-							total = 86100000;
+							total = video_length;
 							$('.agmodal__video-preloader span').text(parseInt( (e.loaded / total * 100), 10) + "%");
 						}
 					};
@@ -102,6 +112,7 @@
 		close : function() {
 			var current_modal = $(this);
 			var current_modal__wrapper = current_modal.parent('.agmodal__wrapper');
+			var current_settings = current_modal.data('agmodal');
 
 			current_modal.removeClass('agmodal--visible');
 			current_modal__wrapper.removeClass('agmodal__wrapper--visible');
@@ -114,11 +125,11 @@
 			},400);
 
 			// video close
-			if(current_modal.find('video').length){
+			if(current_settings.video){
 				current_modal.find('video').get(0).pause();
 			}
 
-			if (current_modal.attr('data-video')) {
+			if (current_settings.videoAjax) {
 				if (!current_modal.find('video').hasClass('downloaded')) {
 					current_modal.find('video').get(0).pause();
 					current_modal.find('video').get(0).src = "";
@@ -127,8 +138,6 @@
 						current_modal.find('video').remove();
 					},1000);
 					xhr.abort();
-					$('html').animate( { scrollTop: 0 }, 800 );
-					$('body').animate( { scrollTop: 0 }, 800 );
 				}
 			}
 			// video close
@@ -142,13 +151,13 @@
 			var current_modal__wrapper = current_modal.parent('.agmodal__wrapper');
 			var window_height = $(window).height();
 			var modal_height = current_modal.outerHeight();
+			var current_settings = current_modal.data('agmodal');
 
 			if (window_height < (modal_height + 110)){
 				current_modal__wrapper.removeClass('agmodal__wrapper--center');
-			} else if (settings.center) {
+			} else if (current_settings.center) {
 				current_modal__wrapper.addClass('agmodal__wrapper--center');
 			}
-
 			return this;
 		}
 
@@ -168,7 +177,9 @@
 	// определяем ширину скроллбара
 
 	$(window).on('resize',function(){
-		$('.agmodal--visible').agmodal('checkHeights');
+		try {
+			$('.agmodal--visible').agmodal('checkHeights');
+		} catch (err){}
 	});
 
 	$(document).ready(function() {
