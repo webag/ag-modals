@@ -37,7 +37,9 @@ The value of data-ag attribute - the ID of your modal.
 <button data-ag="your_id">Open Modal</button>
 ```
 
-For better perfomance add `display:none` to your modal.
+####5. For better perfomance add `display:none` to your modal.
+
+This is need to hide content until document ready.
 ```css
 #your_id{
     display:none;
