@@ -38,6 +38,30 @@ The value of data-ag attribute - the ID of your modal.
 ```
 
 
+##Parameters
+
+There are a small stack of available parameters. Example for call plugin with parameters:
+```javascript
+$('#your_id').agmodal({
+    effect: 'fade', //slide,scale,3d,morph,
+    overlayColor: 'rgba(44, 55, 73, 0.9)',
+    center: false,
+    video: true,
+    videoAjax: false
+});
+```
+
+
+| Parameter        | Default           | Description  |
+| ------------- |-------------| -----|
+| effect      | 'fade' | visual effect |
+| overlayColor      | 'rgba(44, 55, 73, 0.9)' | background colow of overlay |
+| center      | false | vertical centered modal |
+| video      | false | set true if you want video in modal |
+| videoAjax      | false | set true if you want to load video from server with ajax. For this parameter requered additional data attributes. See this in the end of readme.|
+| width      | null | Set number value if you want to change width of your modal in js. By default width of modal get from css.|
+
+
 ##Methods
 
 ####Open agmodal
@@ -56,8 +80,8 @@ $('#modal-id').agmodal('close');
 
 ##Ajax HTML5 video:
 
-There are data-video and data-poster attributes to firing AgModal for ajax video download with percentage.
+There are `data-agvideo` and `data-agposter` attributes to firing AgModal for ajax video download with percentage. If server don't get the size of video for calculating percentage you need to add `data-agmb` attribute with size of yout file in bytes.
 
 ```html
-<div id="modal-ajax-video-id" data-video="/video/full-video.mp4" data-poster="/images/poster.jpg" class="agmodal agmodal--video"></div>
+<div id="your_id" data-agvideo="/video/full-video.mp4" data-agposter="/images/poster.jpg" data-agmb="16000000"></div>
 ```
