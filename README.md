@@ -58,7 +58,7 @@ $('#your_id').agmodal({
 | overlayColor      | 'rgba(44, 55, 73, 0.9)' | background colow of overlay |
 | center      | false | vertical centered modal |
 | video      | false | set true if you want video in modal |
-| videoAjax      | false | set true if you want to load video from server with ajax. For this parameter requered additional data attributes. See this in the end of readme.|
+| videoAjax      | false | set true if you want to load video from server with ajax. For this parameter required additional data attributes. See this in the end of readme.|
 | width      | null | Set number value if you want to change width of your modal in js. By default width of modal get from css.|
 
 
@@ -84,4 +84,11 @@ There are `data-agvideo` and `data-agposter` attributes to firing AgModal for aj
 
 ```html
 <div id="your_id" data-agvideo="/video/full-video.mp4" data-agposter="/images/poster.jpg" data-agmb="16000000"></div>
+```
+
+```javascript
+$('#your_id').agmodal({
+    video: true,
+    videoAjax: false
+});
 ```
