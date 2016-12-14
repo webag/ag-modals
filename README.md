@@ -86,6 +86,7 @@ There are `data-agvideo` and `data-agposter` attributes to firing AgModal for aj
 <div id="your_id" data-agvideo="/video/full-video.mp4" data-agposter="/images/poster.jpg" data-agmb="16000000"></div>
 ```
 
+Initialize it with that paramteres:
 ```javascript
 $('#your_id').agmodal({
     video: true,
