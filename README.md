@@ -1,54 +1,37 @@
-#AG-modal 4
+#AG-modal
 
-Modal windows with any html content, HTML5 video
-Need: jQuery
+Lightweight Jquery plugin for creating modal windows with any html content.
 
-New in 4 version:
-* Now agmodal is normal jQuery plugin! It has inizialization and params!!!
-* Add ajax HTML5 video future with percentage download!!! SO CUTE!!!
-* Rewrite some css, append scss file.
+**Need**: jQuery
 
-New in 3 version:
-* don't know, brothers, don't know.
-
-New in 2 version:
-* upgrade core of plugin
-* no more need to write html for cross in modal
-* add 2 visual effects
-* allow multiple modal windows at same time (if modal called inside other open modal)
+**Only 4 kb**
 
 ##Get started
 
-
-#####1. Create modal with class .agmodal and any content inside.
+#####1. Include js and css in your projects.
 ```html
-<div id="modal-id" class="agmodal">
-	<!-- Some awesome text or html inside-->
+<link href="{your_path}/agmodal.css" rel="stylesheet">
+<script src="{your_path}/agmodal.jquery.min.js" type="text/javascript"></script>
+```
+
+#####2. Create div with any content inside. You may create this in any place of your page. But be carefull with replacement it in containers with `overflow:hidden`.
+```html
+<div id="your_id">
+	{some html}
 </div>
 ```
 
-#####2. Inizialization AgModal
+#####3. Inizialize AgModal
 ```javascript
 $(document).ready(function(){
-	$('.agmodal').agmodal({
-		effect: 'fade', //slide,scale,3d,morph
-		overlayColor: 'rgba(0,0,0,0.5)',
-		center: true
-	});
+	$('#your_id').agmodal();
 });
 ```
 
-#####3. You may open agmodal with different methods
+#####4. Now you can open this agmodal by element with `data-ag` attribute. The value of data-ag attribute - the ID of your modal.
 ```html
-<button data-ag="modal-id">Open Modal</button>
+<button data-ag="your_id">Open Modal</button>
 ```
-or
-```html
-<a href="#" data-ag="modal-id">Open Modal</a>
-```
-or
-some tag with data-ag attribute
-
 
 ##Methods
 
