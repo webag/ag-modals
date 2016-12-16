@@ -6,6 +6,10 @@ Lightweight Jquery plugin for creating modal windows with any html content.
 
 **Only 4 kb**
 
+
+[**DEMO PAGE**](http://webag.github.io/ag-modals/)
+
+
 ##Get started
 
 ####1. Include js and css in your projects.
