@@ -22,6 +22,7 @@
   left: 0;
   width: 100%;
   height: 50px;
+  pointer-events: none;
 }
 
 .agmodal--fade {
