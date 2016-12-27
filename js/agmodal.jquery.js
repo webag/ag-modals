@@ -3,7 +3,6 @@
 	var defaults  = {
 		overlayColor: 'rgba(44, 55, 73, 0.9)',
 		effect: 'fade', //slide,scale,3d,morph,
-		center: false,
 		video: false,
 		videoAjax: false,
 		width: null
@@ -29,7 +28,6 @@
 						current_modal.css('width',current_settings.width + 'px');
 					}
 					current_settings.video ? current_modal.addClass('agmodal--video') : null;
-					current_settings.center ? current_modal__wrapper.addClass('agmodal__wrapper--center') : null;
 					current_modal__wrapper.css('background-color', current_settings.overlayColor);
 					$(document).trigger('agmodal.inited');
 				}
@@ -44,7 +42,6 @@
 			$('html').addClass('agmodal--lock');
 			current_modal__wrapper.addClass('agmodal__wrapper--visible');
 			current_modal.addClass('agmodal--visible');
-			current_modal.agmodal('checkHeights');
 
 			setTimeout( function() {
 				$('.agmodal__wrapper--visible').focus();
@@ -147,21 +144,6 @@
 			return this;
 		},
 
-		checkHeights : function() {
-			var current_modal = $(this);
-			var current_modal__wrapper = current_modal.parent('.agmodal__wrapper');
-			var window_height = $(window).height();
-			var modal_height = current_modal.outerHeight();
-			var current_settings = current_modal.data('agmodal');
-
-			if (window_height < (modal_height + 110)){
-				current_modal__wrapper.removeClass('agmodal__wrapper--center');
-			} else if (current_settings.center) {
-				current_modal__wrapper.addClass('agmodal__wrapper--center');
-			}
-			return this;
-		}
-
 	};
 
 	// определяем ширину скроллбара
@@ -176,12 +158,6 @@
 		$("<style type='text/css'>.agmodal--lock{margin-right:" + scrollWidth + "px !important;}</style>").appendTo("head");
 	});
 	// определяем ширину скроллбара
-
-	$(window).on('resize',function(){
-		try {
-			$('.agmodal--visible').agmodal('checkHeights');
-		} catch (err){}
-	});
 
 	$(document).ready(function() {
 		$('*[data-ag]').click(function(e){

@@ -1,4 +1,6 @@
 .agmodal {
+  display: none;
+  vertical-align: middle;
   position: relative;
   background: #f7f8f9;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
@@ -11,18 +13,7 @@
   -ms-transform-origin: center top;
   transform-origin: center top;
   cursor: auto;
-  display: none;
   will-change: opacity,tranform;
-}
-
-.agmodal:after {
-  content: '';
-  position: absolute;
-  bottom: -50px;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  pointer-events: none;
 }
 
 .agmodal--fade {
@@ -77,28 +68,20 @@
 }
 
 .agmodal__wrapper {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: flex-start;
-  -ms-flex-align: start;
-  align-items: flex-start;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
   position: fixed;
   height: 100%;
   width: 100%;
-  padding: 0 20px;
   top: 0;
   left: 0;
   z-index: -100;
   transition: all 0.4s ease;
+  box-sizing: border-box;
   cursor: pointer;
   overflow: auto;
-  overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-  box-sizing: border-box;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  text-align: center;
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
@@ -111,14 +94,16 @@
   }
 }
 
-@media (max-width: 640px) {
-  .agmodal__wrapper {
-    padding: 0;
-  }
+.agmodal__wrapper:before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+  width: 0;
 }
 
 .agmodal__wrapper .agmodal {
-  display: block;
+  display: inline-block;
 }
 
 .agmodal__wrapper:focus {
@@ -126,19 +111,11 @@
 }
 
 .agmodal__wrapper--visible {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+  display: block;
   visibility: visible;
   pointer-events: auto;
   opacity: 1;
   z-index: 9999;
-}
-
-.agmodal__wrapper--center {
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
 }
 
 .agmodal__wrapper * {
