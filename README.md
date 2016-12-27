@@ -57,7 +57,6 @@ There are a small stack of available parameters. Example for call plugin with pa
 $('#your_id').agmodal({
     effect: 'fade', //slide,scale,3d,morph,
     overlayColor: 'rgba(44, 55, 73, 0.9)',
-    center: false,
     video: true,
     videoAjax: false
 });
@@ -68,7 +67,6 @@ $('#your_id').agmodal({
 | ------------- |-------------| -----|
 | effect      | 'fade' | visual effect |
 | overlayColor      | 'rgba(44, 55, 73, 0.9)' | background colow of overlay |
-| center      | false | vertical centered modal |
 | video      | false | set true if you want video in modal |
 | videoAjax      | false | set true if you want to load video from server with ajax. For this parameter required additional data attributes. See this in the end of readme.|
 | width      | null | Set number value if you want to change width of your modal in js. By default width of modal get from css.|
