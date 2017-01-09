@@ -90,7 +90,7 @@ $('#modal-id').agmodal('close');
 
 ##Ajax HTML5 video:
 
-There are `data-agvideo` and `data-agposter` attributes to firing AgModal for ajax video download with percentage. If server don't get the size of video for calculating percentage you need to add `data-agmb` attribute with size of yout file in bytes.
+There are `data-agvideo` and `data-agposter` attributes to firing AgModal for ajax video download with percentage. If server don't get the size of video for calculating percentage you need to add `data-agmb` attribute with size of your file in bytes.
 
 ```html
 <div id="your_id" data-agvideo="/video/full-video.mp4" data-agposter="/images/poster.jpg" data-agmb="16000000"></div>
@@ -100,6 +100,6 @@ Initialize it with that paramteres:
 ```javascript
 $('#your_id').agmodal({
     video: true,
-    videoAjax: false
+    videoAjax: true
 });
 ```
