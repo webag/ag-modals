@@ -19,7 +19,7 @@
 				var current_settings = current_modal.data('agmodal');
 
 				if (!current_modal.parent('.agmodal__wrapper').length) {
-					current_modal.addClass('agmodal');
+					current_modal.addClass('agmodal').addClass('agmodal--inited');
 					current_modal.append('<a class="agmodal__close"></a>');
 					current_modal.wrap('<div class="agmodal__wrapper" tabindex="-1"></div>');
 					var current_modal__wrapper = current_modal.parent('.agmodal__wrapper');
@@ -164,7 +164,7 @@
 			e.preventDefault();
 			var modalLocation = $(this).attr('data-ag');
 			var modal = $('#'+modalLocation);
-			if(modal.length){
+			if(modal.length && modal.hasClass('agmodal--inited')){
 				modal.agmodal('open');
 			}
 		});
