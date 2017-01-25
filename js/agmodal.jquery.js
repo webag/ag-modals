@@ -164,7 +164,9 @@
 			e.preventDefault();
 			var modalLocation = $(this).attr('data-ag');
 			var modal = $('#'+modalLocation);
-			modal.agmodal('open');
+			if(modal.length){
+				modal.agmodal('open');
+			}
 		});
 	});
 
